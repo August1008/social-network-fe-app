@@ -18,23 +18,31 @@ function Registration() {
             isActive: 0,
             isApproved: 0
         });
-        // axios.post(`https://localhost:44380/api/Registration/create`,data)
-        // .then((result) =>{
-        //     const dt = result.data;
-        // })
-        // .catch((error) => {
-        //     alert(error);
-        // })
-        fetch("https://localhost:44380/api/Registration/create",{
-            method: "POST",
-            body: data,
-            headers: {
-                'Accept': "application/json",
-                'Content-Type': "application/json"
-            }
+        axios.post(`https://localhost:44380/api/Registration/create`, data,
+        {
+            headers:{
+                'Content-Type':'application/json'
+        }})
+        .then(result => {
+            alert(result.data.message);
         })
-        .then(respone => console.log(respone.json()))
-        .catch(err => console.log(err));
+        .catch((error) => {
+            alert(error);
+        })
+        // fetch("https://localhost:44380/api/Registration/create",{
+        //     method: "POST",
+        //     body: data,
+        //     headers: {
+        //         'Accept': "application/json",
+        //         'Content-Type': "application/json"
+        //     }
+        // })
+        // .then(res => res.json())
+        // .then(res => {
+        //     var temp = res.json();
+        //     alert(response.json().message);
+        // })
+        // .catch(err => console.log(err));
     }
 
     const ResetButtonEvent = (e) => {
