@@ -102,6 +102,10 @@ function Registration() {
                                             onClick={(e) => SubmitEvent(e)}>Submit form</button>
                                         </div>
 
+                                        <div className="">
+                                            <p className='ms-5'>Already have an account? <a href="/login" class="link-info">Login here</a></p>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
