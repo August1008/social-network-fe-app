@@ -7,9 +7,16 @@ import {
   MDBIcon,
   MDBInput,
 } from "mdb-react-ui-kit";
+import {
+  createBrowserHistory,
+  createHashHistory,
+  createMemoryHistory,
+} from "history";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,14 +28,15 @@ function Login() {
     };
 
     axios
-    .post("https://localhost:44380/api/Registration/login", data)
-    .then((result) => {
-      if (result.data.success == false) alert("Login failed!");
-      else alert("Login successfully!");
-    })
-    .catch((error) => {
-      alert(error);
-    });
+      .post("https://localhost:44380/api/Registration/login", data)
+      .then((result) => {
+        if (result.data.success == true)
+          navigate({ pathname: "/userdashboard" });
+        else alert("Login failed!");
+      })
+      .catch((error) => {
+        alert(error);
+      });
   };
 
   return (
