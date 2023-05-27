@@ -30,9 +30,16 @@ function Login() {
     axios
       .post("https://localhost:44380/api/Registration/login", data)
       .then((result) => {
-        if (result.data.success == true)
-          navigate({ pathname: "/userdashboard" });
-        else alert("Login failed!");
+        if (result.data.success == true) {
+          if (email === "admin") {
+            localStorage.setItem("username", email);
+            navigate({ pathname: "/userdashboard" });
+          } 
+          else {
+            localStorage.setItem("username", result.data.user.name);
+            navigate({ pathname: "/userdashboard" });
+          }
+        } else alert("Login failed!");
       })
       .catch((error) => {
         alert(error);
